@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rishika & Hraday — Save the Date</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #f8f5ef;
+    color: #292621;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    position: relative;
+}
+
+.card {
+    width: min(920px, 100%);
+    min-height: 680px;
+    background: #fbfaf7;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid rgba(70, 63, 52, 0.12);
+    box-shadow: 0 20px 70px rgba(50, 45, 38, 0.08);
+}
+
+/* Decorative arches */
+.arch {
+    position: absolute;
+    border: 1px solid rgba(110, 99, 80, 0.16);
+    border-bottom: none;
+    border-radius: 500px 500px 0 0;
+    width: 420px;
+    height: 500px;
+    left: 50%;
+    bottom: -180px;
+    transform: translateX(-50%);
+}
+
+.arch.two {
+    width: 520px;
+    height: 600px;
+    bottom: -230px;
+    opacity: .55;
+}
+
+/* subtle botanical details */
+.leaf {
+    position: absolute;
+    width: 150px;
+    height: 230px;
+    border-left: 1px solid rgba(93, 103, 75, .18);
+    border-radius: 100%;
+    opacity: .7;
+}
+
+.leaf.left {
+    left: -45px;
+    top: 70px;
+    transform: rotate(-28deg);
+}
+
+.leaf.right {
+    right: -45px;
+    bottom: 70px;
+    transform: rotate(152deg);
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 70px 30px;
+    width: 100%;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #7d7568;
+    margin-bottom: 35px;
+}
+
+.intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(25px, 4vw, 40px);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 38px;
+}
+
+.names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(65px, 12vw, 120px);
+    line-height: .78;
+    font-weight: 500;
+    letter-spacing: -3px;
+}
+
+.ampersand {
+    display: block;
+    font-size: .45em;
+    line-height: 1.5;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0;
+    color: #817967;
+}
+
+.date {
+    margin-top: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+    letter-spacing: 5px;
+}
+
+.day {
+    margin-top: 8px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #817967;
+}
+
+.divider {
+    width: 55px;
+    height: 1px;
+    background: #aaa294;
+    margin: 35px auto;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: clamp(15px, 5vw, 45px);
+}
+
+.unit {
+    min-width: 55px;
+}
+
+.number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 6vw, 50px);
+    line-height: 1;
+}
+
+.label {
+    margin-top: 7px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #918979;
+}
+
+.footer {
+    margin-top: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: #716a5e;
+}
+
+/* opening screen */
+.cover {
+    position: absolute;
+    inset: 0;
+    background: #292621;
+    color: #f8f5ef;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.cover.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.cover-content {
+    padding: 40px;
+}
+
+.cover-small {
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: .65;
+    margin-bottom: 35px;
+}
+
+.cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 8vw, 75px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.tap {
+    margin-top: 55px;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: .65;
+}
+
+@media (max-width: 600px) {
+    .page {
+        padding: 12px;
+    }
+
+    .card {
+        min-height: calc(100vh - 24px);
+    }
+
+    .content {
+        padding: 50px 18px;
+    }
+
+    .names {
+        letter-spacing: -1px;
+    }
+
+    .countdown {
+        gap: 12px;
+    }
+
+    .unit {
+        min-width: 45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="card">
+
+        <div class="arch"></div>
+        <div class="arch two"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+
+        <!-- Opening screen -->
+        <div class="cover" id="cover" onclick="openInvite()">
+            <div class="cover-content">
+                <div class="cover-small">Save the Date</div>
+
+                <div class="cover-title">
+                    Something beautiful<br>
+                    is about to begin.
+                </div>
+
+                <div class="tap">
+                    Tap to discover&nbsp;&nbsp;→
+                </div>
+            </div>
+        </div>
+
+        <!-- Invitation -->
+        <div class="content">
+
+            <div class="eyebrow">
+                Save the Date
+            </div>
+
+            <div class="intro">
+                Some moments deserve a countdown.
+            </div>
+
+            <div class="names">
+                Rishika
+                <span class="ampersand">&</span>
+                Hraday
+            </div>
+
+            <div class="date">
+                11 · 11 · 2026
+            </div>
+
+            <div class="day">
+                Wednesday
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="countdown">
+
+                <div class="unit">
+                    <div class="number" id="days">00</div>
+                    <div class="label">Days</div>
+                </div>
+
+                <div class="unit">
+                    <div class="number" id="hours">00</div>
+                    <div class="label">Hours</div>
+                </div>
+
+                <div class="unit">
+                    <div class="number" id="minutes">00</div>
+                    <div class="label">Minutes</div>
+                </div>
+
+                <div class="unit">
+                    <div class="number" id="seconds">00</div>
+                    <div class="label">Seconds</div>
+                </div>
+
+            </div>
+
+            <div class="footer">
+                A new chapter awaits.
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+function openInvite() {
+    document.getElementById("cover").classList.add("hidden");
+}
+
+/*
+   Countdown target:
+   11 November 2026, beginning of the day in India.
+   No event time has been added.
+*/
+const targetDate = new Date("2026-11-11T00:00:00+05:30").getTime();
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
+    const seconds = Math.floor(
+        (distance % (1000 * 60)) /
+        1000
+    );
+
+    document.getElementById("days").innerText =
+        String(days).padStart(2, "0");
+
+    document.getElementById("hours").innerText =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").innerText =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").innerText =
+        String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
+</html>
