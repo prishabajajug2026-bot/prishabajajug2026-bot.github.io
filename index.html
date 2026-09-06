@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,193 +6,346 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rishika & Hraday — Save the Date</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
+<style>
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    --ivory: #f7f3eb;
+    --paper: #fbf9f4;
+    --ink: #292722;
+    --muted: #817969;
+    --line: rgba(82, 73, 59, 0.20);
+    --soft-line: rgba(82, 73, 59, 0.10);
+}
+
 body {
     min-height: 100vh;
-    background: #f8f5ef;
-    color: #292621;
+    background: var(--ivory);
+    color: var(--ink);
     font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
 }
+
+/* PAGE */
 
 .page {
     min-height: 100vh;
+    padding: 22px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 30px 20px;
-    position: relative;
+    align-items: center;
 }
 
 .card {
-    width: min(920px, 100%);
-    min-height: 680px;
-    background: #fbfaf7;
+    width: min(950px, 100%);
+    min-height: 700px;
+    background: var(--paper);
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     overflow: hidden;
-    border: 1px solid rgba(70, 63, 52, 0.12);
-    box-shadow: 0 20px 70px rgba(50, 45, 38, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 25px 80px rgba(40,35,28,.10);
 }
 
-/* Decorative arches */
-.arch {
+/* DOUBLE BORDER */
+
+.card::before {
+    content: "";
     position: absolute;
-    border: 1px solid rgba(110, 99, 80, 0.16);
-    border-bottom: none;
-    border-radius: 500px 500px 0 0;
-    width: 420px;
-    height: 500px;
-    left: 50%;
-    bottom: -180px;
-    transform: translateX(-50%);
+    inset: 17px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+    z-index: 3;
 }
 
-.arch.two {
-    width: 520px;
-    height: 600px;
-    bottom: -230px;
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 23px;
+    border: 1px solid var(--soft-line);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* CORNER ORNAMENTS */
+
+.corner {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    z-index: 4;
     opacity: .55;
 }
 
-/* subtle botanical details */
-.leaf {
+.corner::before,
+.corner::after {
+    content: "";
     position: absolute;
-    width: 150px;
-    height: 230px;
-    border-left: 1px solid rgba(93, 103, 75, .18);
-    border-radius: 100%;
-    opacity: .7;
+    background: var(--muted);
 }
 
-.leaf.left {
-    left: -45px;
-    top: 70px;
-    transform: rotate(-28deg);
+.corner::before {
+    width: 42px;
+    height: 1px;
 }
 
-.leaf.right {
-    right: -45px;
+.corner::after {
+    width: 1px;
+    height: 42px;
+}
+
+.corner.tl {
+    top: 17px;
+    left: 17px;
+}
+
+.corner.tr {
+    top: 17px;
+    right: 17px;
+    transform: rotate(90deg);
+}
+
+.corner.bl {
+    bottom: 17px;
+    left: 17px;
+    transform: rotate(270deg);
+}
+
+.corner.br {
+    bottom: 17px;
+    right: 17px;
+    transform: rotate(180deg);
+}
+
+/* BOTANICAL LINE ART */
+
+.botanical {
+    position: absolute;
+    width: 180px;
+    height: 300px;
+    opacity: .18;
+    z-index: 1;
+}
+
+.botanical.left {
+    left: -40px;
+    top: 90px;
+    transform: rotate(-15deg);
+}
+
+.botanical.right {
+    right: -40px;
     bottom: 70px;
-    transform: rotate(152deg);
+    transform: scaleX(-1) rotate(-15deg);
 }
+
+.stem {
+    position: absolute;
+    width: 1px;
+    height: 250px;
+    background: #77705f;
+    left: 80px;
+    top: 20px;
+    transform: rotate(20deg);
+}
+
+.leaf-shape {
+    position: absolute;
+    width: 55px;
+    height: 27px;
+    border: 1px solid #77705f;
+    border-radius: 100% 0 100% 0;
+}
+
+.l1 { left: 45px; top: 55px; transform: rotate(20deg); }
+.l2 { left: 88px; top: 90px; transform: rotate(200deg); }
+.l3 { left: 38px; top: 135px; transform: rotate(20deg); }
+.l4 { left: 80px; top: 175px; transform: rotate(200deg); }
+
+/* ARCH */
+
+.arch {
+    position: absolute;
+    width: 500px;
+    height: 570px;
+    left: 50%;
+    bottom: -275px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(104,94,76,.12);
+    border-bottom: none;
+    border-radius: 500px 500px 0 0;
+    z-index: 1;
+}
+
+.arch.small {
+    width: 430px;
+    height: 500px;
+    bottom: -235px;
+    opacity: .65;
+}
+
+/* CONTENT */
 
 .content {
-    position: relative;
-    z-index: 2;
-    padding: 70px 30px;
     width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+    padding: 70px 40px;
 }
 
+/* TOP */
+
 .eyebrow {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 5px;
     text-transform: uppercase;
-    color: #7d7568;
-    margin-bottom: 35px;
+    color: var(--muted);
+    margin-bottom: 28px;
 }
 
 .intro {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(25px, 4vw, 40px);
-    font-weight: 400;
+    font-size: clamp(23px, 3.5vw, 34px);
     font-style: italic;
-    margin-bottom: 38px;
+    color: #555045;
+    margin-bottom: 35px;
 }
+
+/* NAMES */
 
 .names {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(65px, 12vw, 120px);
-    line-height: .78;
+    font-size: clamp(65px, 11vw, 112px);
+    line-height: .75;
     font-weight: 500;
-    letter-spacing: -3px;
+    letter-spacing: -2px;
 }
 
 .ampersand {
     display: block;
-    font-size: .45em;
-    line-height: 1.5;
-    font-weight: 400;
+    font-size: .38em;
+    line-height: 1.65;
     font-style: italic;
-    letter-spacing: 0;
-    color: #817967;
+    font-weight: 400;
+    color: var(--muted);
+}
+
+/* DATE */
+
+.date-wrap {
+    margin-top: 43px;
+}
+
+.date-label {
+    font-size: 8px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
 }
 
 .date {
-    margin-top: 48px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 27px;
-    letter-spacing: 5px;
+    font-size: 31px;
+    letter-spacing: 7px;
 }
 
 .day {
-    margin-top: 8px;
-    font-size: 10px;
+    margin-top: 7px;
+    font-size: 9px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #817967;
+    color: var(--muted);
 }
 
+/* DIVIDER */
+
 .divider {
-    width: 55px;
+    width: 100px;
     height: 1px;
-    background: #aaa294;
-    margin: 35px auto;
+    background: rgba(94,84,67,.30);
+    margin: 30px auto;
+    position: relative;
 }
+
+.divider::before,
+.divider::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border: 1px solid rgba(94,84,67,.45);
+    transform: rotate(45deg);
+    top: -2px;
+}
+
+.divider::before {
+    left: -2px;
+}
+
+.divider::after {
+    right: -2px;
+}
+
+/* COUNTDOWN */
 
 .countdown {
     display: flex;
     justify-content: center;
-    gap: clamp(15px, 5vw, 45px);
+    gap: 10px;
+    max-width: 500px;
+    margin: auto;
 }
 
 .unit {
-    min-width: 55px;
+    width: 105px;
+    padding: 12px 8px 10px;
+    border: 1px solid rgba(88,78,63,.16);
+    background: rgba(255,255,255,.18);
 }
 
 .number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(34px, 6vw, 50px);
+    font-size: 39px;
     line-height: 1;
 }
 
 .label {
-    margin-top: 7px;
-    font-size: 8px;
+    margin-top: 6px;
+    font-size: 7px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #918979;
+    color: var(--muted);
 }
 
+/* FOOTER */
+
 .footer {
-    margin-top: 40px;
+    margin-top: 27px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 17px;
     font-style: italic;
     color: #716a5e;
 }
 
-/* opening screen */
+/* COVER */
+
 .cover {
     position: absolute;
     inset: 0;
-    background: #292621;
-    color: #f8f5ef;
-    z-index: 10;
+    z-index: 20;
+    background: var(--ink);
+    color: var(--ivory);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
     cursor: pointer;
     transition: opacity 1s ease, visibility 1s ease;
@@ -202,57 +356,124 @@ body {
     visibility: hidden;
 }
 
+.cover::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(247,243,235,.28);
+}
+
+.cover::after {
+    content: "";
+    position: absolute;
+    inset: 25px;
+    border: 1px solid rgba(247,243,235,.10);
+}
+
 .cover-content {
-    padding: 40px;
+    position: relative;
+    z-index: 2;
+    padding: 50px;
 }
 
 .cover-small {
     font-size: 9px;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     text-transform: uppercase;
     opacity: .65;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .cover-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(42px, 8vw, 75px);
+    font-size: clamp(43px, 8vw, 78px);
     font-style: italic;
     font-weight: 400;
-    line-height: 1;
+    line-height: .95;
+}
+
+.cover-line {
+    width: 70px;
+    height: 1px;
+    background: rgba(247,243,235,.45);
+    margin: 35px auto;
+}
+
+.cover-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 5px;
 }
 
 .tap {
-    margin-top: 55px;
-    font-size: 9px;
+    margin-top: 48px;
+    font-size: 8px;
     letter-spacing: 4px;
     text-transform: uppercase;
     opacity: .65;
 }
 
+/* MOBILE */
+
 @media (max-width: 600px) {
+
     .page {
-        padding: 12px;
+        padding: 10px;
     }
 
     .card {
-        min-height: calc(100vh - 24px);
+        min-height: calc(100vh - 20px);
+    }
+
+    .card::before {
+        inset: 12px;
+    }
+
+    .card::after {
+        inset: 18px;
     }
 
     .content {
-        padding: 50px 18px;
+        padding: 55px 20px;
+    }
+
+    .intro {
+        margin-bottom: 28px;
     }
 
     .names {
-        letter-spacing: -1px;
+        font-size: clamp(58px, 17vw, 85px);
+    }
+
+    .date {
+        font-size: 25px;
+        letter-spacing: 5px;
     }
 
     .countdown {
-        gap: 12px;
+        gap: 6px;
     }
 
     .unit {
-        min-width: 45px;
+        width: 23%;
+        padding: 10px 3px;
+    }
+
+    .number {
+        font-size: 31px;
+    }
+
+    .label {
+        font-size: 6px;
+        letter-spacing: 1px;
+    }
+
+    .botanical {
+        opacity: .10;
+    }
+
+    .cover-content {
+        padding: 35px;
     }
 }
 </style>
@@ -264,28 +485,63 @@ body {
 
     <div class="card">
 
+        <!-- Border corners -->
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+
+        <!-- Botanical decoration -->
+        <div class="botanical left">
+            <div class="stem"></div>
+            <div class="leaf-shape l1"></div>
+            <div class="leaf-shape l2"></div>
+            <div class="leaf-shape l3"></div>
+            <div class="leaf-shape l4"></div>
+        </div>
+
+        <div class="botanical right">
+            <div class="stem"></div>
+            <div class="leaf-shape l1"></div>
+            <div class="leaf-shape l2"></div>
+            <div class="leaf-shape l3"></div>
+            <div class="leaf-shape l4"></div>
+        </div>
+
+        <!-- Arch -->
         <div class="arch"></div>
-        <div class="arch two"></div>
-        <div class="leaf left"></div>
-        <div class="leaf right"></div>
+        <div class="arch small"></div>
 
         <!-- Opening screen -->
         <div class="cover" id="cover" onclick="openInvite()">
+
             <div class="cover-content">
-                <div class="cover-small">Save the Date</div>
+
+                <div class="cover-small">
+                    Save the Date
+                </div>
 
                 <div class="cover-title">
-                    Something beautiful<br>
-                    is about to begin.
+                    Some moments<br>
+                    deserve a countdown.
+                </div>
+
+                <div class="cover-line"></div>
+
+                <div class="cover-date">
+                    11 · 11 · 2026
                 </div>
 
                 <div class="tap">
                     Tap to discover&nbsp;&nbsp;→
                 </div>
+
             </div>
+
         </div>
 
-        <!-- Invitation -->
+        <!-- Main invitation -->
+
         <div class="content">
 
             <div class="eyebrow">
@@ -293,7 +549,7 @@ body {
             </div>
 
             <div class="intro">
-                Some moments deserve a countdown.
+                Something beautiful is about to begin.
             </div>
 
             <div class="names">
@@ -302,12 +558,20 @@ body {
                 Hraday
             </div>
 
-            <div class="date">
-                11 · 11 · 2026
-            </div>
+            <div class="date-wrap">
 
-            <div class="day">
-                Wednesday
+                <div class="date-label">
+                    The date
+                </div>
+
+                <div class="date">
+                    11 · 11 · 2026
+                </div>
+
+                <div class="day">
+                    Wednesday
+                </div>
+
             </div>
 
             <div class="divider"></div>
@@ -337,52 +601,67 @@ body {
             </div>
 
             <div class="footer">
-                A new chapter awaits.
+                The countdown begins.
             </div>
 
         </div>
+
     </div>
+
 </div>
 
 <script>
+
+/* Opening animation */
 
 function openInvite() {
     document.getElementById("cover").classList.add("hidden");
 }
 
-/*
-   Countdown target:
-   11 November 2026, beginning of the day in India.
-   No event time has been added.
+
+/* Live countdown
+   Target = 11 November 2026, 12:00 AM IST
 */
-const targetDate = new Date("2026-11-11T00:00:00+05:30").getTime();
+
+const targetDate =
+    new Date("2026-11-11T00:00:00+05:30").getTime();
 
 function updateCountdown() {
 
     const now = new Date().getTime();
+
     const distance = targetDate - now;
 
     if (distance <= 0) {
+
         document.getElementById("days").innerText = "00";
         document.getElementById("hours").innerText = "00";
         document.getElementById("minutes").innerText = "00";
         document.getElementById("seconds").innerText = "00";
+
         return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-    );
-    const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) /
-        (1000 * 60)
-    );
-    const seconds = Math.floor(
-        (distance % (1000 * 60)) /
-        1000
-    );
+    const days =
+        Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    const hours =
+        Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+    const minutes =
+        Math.floor(
+            (distance % (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+    const seconds =
+        Math.floor(
+            (distance % (1000 * 60)) /
+            1000
+        );
 
     document.getElementById("days").innerText =
         String(days).padStart(2, "0");
@@ -398,9 +677,11 @@ function updateCountdown() {
 }
 
 updateCountdown();
+
 setInterval(updateCountdown, 1000);
 
 </script>
 
 </body>
 </html>
+```
